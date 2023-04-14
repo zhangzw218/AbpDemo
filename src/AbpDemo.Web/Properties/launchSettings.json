@@ -17,6 +17,7 @@
     },
     "AbpDemo.Web": {
       "commandName": "Project",
+      "launchUrl": "home/index",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

@@ -37,6 +37,9 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.EventBus.RabbitMq;
+using Microsoft.AspNetCore.Routing;
+using System.Threading.Tasks;
 
 namespace AbpDemo.Web;
 
@@ -53,7 +56,8 @@ namespace AbpDemo.Web;
     typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpSwashbuckleModule)
     )]
-public class AbpDemoWebModule : AbpModule
+[DependsOn(typeof(AbpEventBusRabbitMqModule))]
+    public class AbpDemoWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
@@ -211,5 +215,18 @@ public class AbpDemoWebModule : AbpModule
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();
+        app.UseRouter(builder =>
+        {
+            builder.MapGet("", context =>
+            {
+                context.Response.Redirect("./home/index", permanent: false);
+                return Task.FromResult(0);
+            });
+            builder.MapGet("home", context =>
+            {
+                context.Response.Redirect("./home/index", permanent: false);
+                return Task.FromResult(0);
+            });
+        });
     }
 }
