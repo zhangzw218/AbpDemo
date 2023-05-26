@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <AbpPackageVersion>7.0.1</AbpPackageVersion>
+    <MicrosoftPackageVersion>7.0.0</MicrosoftPackageVersion>
+    <MicrosoftAspNetCorePackageVersion>7.0.0</MicrosoftAspNetCorePackageVersion>
+    <SerilogPackageVersion>2.11.0</SerilogPackageVersion>
+  </PropertyGroup>
+</Project>
